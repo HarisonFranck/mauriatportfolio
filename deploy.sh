@@ -12,4 +12,4 @@ git commit -m "Déploiement portfolio"
 
 # 4. On envoie de force vers la branche gh-pages de ton GitHub
 # REMPLACE 'TON_PSEUDO' par ton vrai nom d'utilisateur GitHub ci-dessous :
-git push -f https://github.com/HarisonFranck/mauriatportfolio.git master:gh-pages
+git push -f https://github.com/HarisonFranck/mauriatportfolio.git main:gh-pages
