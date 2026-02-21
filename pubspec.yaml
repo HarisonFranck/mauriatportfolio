@@ -37,6 +37,7 @@ dependencies:
   url_launcher: ^6.3.2
   flutter_animate: ^4.5.2
   google_generative_ai: ^0.4.7
+  http: ^1.2.1
   flutter_dotenv: ^5.0.2
   flutter_localizations:
     sdk: flutter

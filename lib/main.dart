@@ -7,14 +7,17 @@ import 'package:mauriatportfolio/pages/Home.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
+    // Try loading root .env first (common for local development)
     await dotenv.load();
   } catch (e) {
-    // On web or when .env is not present, loading may fail. Log a warning
-    // and continue — missing API key will be handled where it's required.
-    // This prevents the app from crashing when developers don't have a local .env.
-    // If you run into issues, create a `.env` file at the project root
-    // (copy `.env.example`) with `GEN_AI_API_KEY` set.
-    print('Warning: .env file not found or failed to load: $e');
+    try {
+      // On web the file may be under assets/.env — try that path as a fallback.
+      await dotenv.load(fileName: 'assets/.env');
+    } catch (e2) {
+      // Both attempts failed — warn but continue. The AIService will throw
+      // a descriptive error if no API key is available at runtime.
+      print('Warning: .env not found in project root or assets: $e / $e2');
+    }
   }
   runApp(const MyApp());
 }

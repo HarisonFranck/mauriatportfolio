@@ -35,6 +35,9 @@ migrate_working_dir/
 
 # Local environment variables (do not commit)
 .env
+**/.env
+assets/.env
+**/assets/.env
 
 # Symbolication related
 app.*.symbols
