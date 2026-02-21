@@ -20,7 +20,7 @@ Summary: Passionate developer specializing in creating fluid and performant mobi
   }
 
   static String getContact(String lang) {
-    // Contact info is mostly improved by not translating labels if they are standard, 
+    // Contact info is mostly improved by not translating labels if they are standard,
     // but for "Phone" vs "Téléphone" it matters.
     if (lang == 'fr') {
       return """
@@ -208,7 +208,7 @@ Problem Solving:
   }
 
   static String getDifferentiators(String lang) {
-     if (lang == 'fr') {
+    if (lang == 'fr') {
       return """
 🧩 Différenciateurs (Ce qui me distingue)
 - Esprit hybride mobile + backend
@@ -267,11 +267,12 @@ ${getProjects('fr')}
 ${getExperience('fr')}
 ${getDifferentiators('fr')}
 ${getLearningGrowth('fr')}
+${getPersonalPassions('fr')}
 """;
     } else {
       return """
 You are the AI assistant for Mauriat Franck's portfolio.
-Your goal is to answer questions about Mauriat, his skills, projects, and experience based ONLY on the following context.
+Your goal is to answer questions about Mauriat, his skills, projects,personal passions, and experience based ONLY on the following context.
 Be professional, friendly, and concise.
 If you don't know the answer based on the context, say so politely and suggest contacting him directly.
 
@@ -283,6 +284,23 @@ ${getProjects('en')}
 ${getExperience('en')}
 ${getDifferentiators('en')}
 ${getLearningGrowth('en')}
+${getPersonalPassions('en')}
+""";
+    }
+  }
+
+  static String getPersonalPassions(String lang) {
+    if (lang == 'fr') {
+      return """
+🎵 Passions & Vie personnelle
+
+J'aime chanter, manger et regarder des films. Je suis professionnel dans mon travail, mais j'apprécie garder une touche humaine : la musique, la bonne nourriture et le cinéma m'inspirent et m'aident à rester créatif.
+""";
+    } else {
+      return """
+🎵 Passions & Personal Life
+
+I love singing, eating, and watching movies. I'm professional in my work, but I value staying human: music, good food and films inspire me and help keep my creativity flowing.
 """;
     }
   }

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:mauriatportfolio/Utilities/Utilitie.dart';
+import 'package:mauriatportfolio/l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class ProjectCard extends StatefulWidget {
@@ -29,6 +30,9 @@ class ProjectCard extends StatefulWidget {
 class _ProjectCardState extends State<ProjectCard> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double cardWidth = screenWidth < 600 ? screenWidth - 40 : 550;
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (event) {
@@ -43,7 +47,7 @@ class _ProjectCardState extends State<ProjectCard> {
         });
       },
       child: Container(
-        width: 550,
+        width: cardWidth,
         height: 530,
         decoration: BoxDecoration(
           color: const Color.fromARGB(54, 96, 109, 139),
@@ -181,42 +185,40 @@ class _ProjectCardState extends State<ProjectCard> {
   }
 }
 
-List<ProjectCard> projects = [
-  ProjectCard(
-    myIndex: 0,
-    title: "An appointment booking app",
-    description:
-        "Medical appointment platform allowing patients to search for doctors, view real-time availability, and book appointments, with centralized administrative management.",
-    pathImage: "MedScheduler.png",
-    link: "https://github.com/HarisonFranck/Med-Scheduler-Front.git",
-    stackNames: ["Flutter", "Adobe XD", "REST API", "OpenAPI"],
-  ),
-
-  ProjectCard(
-    myIndex: 1,
-    title: "Eisen Task",
-    description:
-        "An app for personnel management, project management, and task assignment, with interconnected modules to ensure efficient coordination and tracking.",
-    pathImage: "EisenTask.png",
-    link: "https://github.com/HarisonFranck/EisenTask.git",
-    stackNames: ["Flutter", "Xano"],
-  ),
-  ProjectCard(
-    myIndex: 2,
-    title: "Tech-Innov : personnel management App",
-    description:
-        "Development of a personnel management interface using Flutter, featuring an interactive dashboard and real-time visualization of active employees.",
-    pathImage: "Responsive.png",
-    link: "https://github.com/HarisonFranck/TeamTech.git",
-    stackNames: ["Flutter"],
-  ),
-  ProjectCard(
-    myIndex: 2,
-    title: "Lyrics App for a choir",
-    description:
-        "Development of a gospel song lyrics search application for a choir, centralizing lyrics within a single platform and enabling synchronization with the organization’s online server.",
-    pathImage: "ShalomApp.png",
-    link: "https://github.com/HarisonFranck/Shalom-App.git",
-    stackNames: ["Flutter", "Supabase", "SQLite"],
-  ),
-];
+List<ProjectCard> getProjects(BuildContext context) {
+  final l10n = AppLocalizations.of(context)!;
+  return [
+    ProjectCard(
+      myIndex: 0,
+      title: l10n.project0_title,
+      description: l10n.project0_description,
+      pathImage: "MedScheduler.png",
+      link: "https://github.com/HarisonFranck/Med-Scheduler-Front.git",
+      stackNames: l10n.project0_stacks.split(',').map((s) => s.trim()).toList(),
+    ),
+    ProjectCard(
+      myIndex: 1,
+      title: l10n.project1_title,
+      description: l10n.project1_description,
+      pathImage: "EisenTask.png",
+      link: "https://github.com/HarisonFranck/EisenTask.git",
+      stackNames: l10n.project1_stacks.split(',').map((s) => s.trim()).toList(),
+    ),
+    ProjectCard(
+      myIndex: 2,
+      title: l10n.project2_title,
+      description: l10n.project2_description,
+      pathImage: "Responsive.png",
+      link: "https://github.com/HarisonFranck/TeamTech.git",
+      stackNames: l10n.project2_stacks.split(',').map((s) => s.trim()).toList(),
+    ),
+    ProjectCard(
+      myIndex: 3,
+      title: l10n.project3_title,
+      description: l10n.project3_description,
+      pathImage: "ShalomApp.png",
+      link: "https://github.com/HarisonFranck/Shalom-App.git",
+      stackNames: l10n.project3_stacks.split(',').map((s) => s.trim()).toList(),
+    ),
+  ];
+}

@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mauriatportfolio/l10n/app_localizations.dart';
 import 'package:mauriatportfolio/pages/Home.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await dotenv.load();
+  } catch (e) {
+    // On web or when .env is not present, loading may fail. Log a warning
+    // and continue — missing API key will be handled where it's required.
+    // This prevents the app from crashing when developers don't have a local .env.
+    // If you run into issues, create a `.env` file at the project root
+    // (copy `.env.example`) with `GEN_AI_API_KEY` set.
+    print('Warning: .env file not found or failed to load: $e');
+  }
   runApp(const MyApp());
 }
 

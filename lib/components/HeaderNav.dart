@@ -33,12 +33,13 @@ class _HeaderNavState extends State<HeaderNav> {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: widget.onTapNav,
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
           width: 95,
-          height: 25,
+          height: 30,
           decoration: BoxDecoration(
             color: (widget.indexHover == widget.myIndex)
-                ? const Color.fromARGB(54, 192, 191, 255)
+                ? const Color.fromARGB(255, 72, 94, 215).withOpacity(0.3)
                 : Colors.transparent,
 
             borderRadius: BorderRadius.circular(10),
@@ -48,7 +49,12 @@ class _HeaderNavState extends State<HeaderNav> {
               widget.name,
               style: TextStyle(
                 fontSize: 14,
-                color: const Color.fromARGB(255, 255, 255, 255),
+                color: (widget.indexHover == widget.myIndex)
+                    ? Colors.white
+                    : Colors.white70,
+                fontWeight: (widget.indexHover == widget.myIndex)
+                    ? FontWeight.bold
+                    : FontWeight.normal,
               ),
             ),
           ),

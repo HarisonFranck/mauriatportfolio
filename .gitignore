@@ -33,6 +33,9 @@ migrate_working_dir/
 /build/
 /coverage/
 
+# Local environment variables (do not commit)
+.env
+
 # Symbolication related
 app.*.symbols
 

@@ -28,10 +28,7 @@ class _AIChatWidgetState extends State<AIChatWidget> {
       _currentLang = newLang;
       final l10n = AppLocalizations.of(context)!;
       _messages = [
-        {
-          'role': 'ai',
-          'message': l10n.aiWelcomeMessage,
-        }
+        {'role': 'ai', 'message': l10n.aiWelcomeMessage},
       ];
       _aiService.startChat(PortfolioData.getSystemPrompt(_currentLang));
     }
@@ -96,7 +93,10 @@ class _AIChatWidgetState extends State<AIChatWidget> {
                 children: [
                   // --- Header ---
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
                     decoration: BoxDecoration(
                       color: const Color(0xFF1E293B), // Slightly lighter header
                       borderRadius: const BorderRadius.only(
@@ -104,7 +104,9 @@ class _AIChatWidgetState extends State<AIChatWidget> {
                         topRight: Radius.circular(16),
                       ),
                       border: Border(
-                        bottom: BorderSide(color: Colors.white.withOpacity(0.05)),
+                        bottom: BorderSide(
+                          color: Colors.white.withOpacity(0.05),
+                        ),
                       ),
                     ),
                     child: Row(
@@ -148,7 +150,11 @@ class _AIChatWidgetState extends State<AIChatWidget> {
                         ),
                         // Close Button
                         IconButton(
-                          icon: const Icon(Icons.close, color: Colors.white54, size: 20),
+                          icon: const Icon(
+                            Icons.close,
+                            color: Colors.white54,
+                            size: 20,
+                          ),
                           onPressed: () {
                             setState(() {
                               _isOpen = false;
@@ -176,12 +182,18 @@ class _AIChatWidgetState extends State<AIChatWidget> {
                           child: Container(
                             margin: const EdgeInsets.only(bottom: 12),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
+                              horizontal: 16,
+                              vertical: 12,
+                            ),
                             constraints: const BoxConstraints(maxWidth: 260),
                             decoration: BoxDecoration(
                               color: isUser
-                                  ? const Color(0xFF6366F1) // User bubble: Indigo
-                                  : const Color(0xFF1E293B), // AI bubble: Dark slate
+                                  ? const Color(
+                                      0xFF6366F1,
+                                    ) // User bubble: Indigo
+                                  : const Color(
+                                      0xFF1E293B,
+                                    ), // AI bubble: Dark slate
                               borderRadius: BorderRadius.only(
                                 topLeft: const Radius.circular(16),
                                 topRight: const Radius.circular(16),
@@ -196,7 +208,9 @@ class _AIChatWidgetState extends State<AIChatWidget> {
                             child: Text(
                               msg['message'] ?? '',
                               style: TextStyle(
-                                color: isUser ? Colors.white : Colors.white.withOpacity(0.9),
+                                color: isUser
+                                    ? Colors.white
+                                    : Colors.white.withOpacity(0.9),
                                 height: 1.4,
                               ),
                             ),
@@ -208,8 +222,11 @@ class _AIChatWidgetState extends State<AIChatWidget> {
 
                   // --- Loading Indicator ---
                   if (_isLoading)
-                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Container(
@@ -223,7 +240,9 @@ class _AIChatWidgetState extends State<AIChatWidget> {
                             height: 20,
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
-                              valueColor: AlwaysStoppedAnimation<Color>(Colors.white70),
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.white70,
+                              ),
                             ),
                           ),
                         ),
@@ -247,8 +266,10 @@ class _AIChatWidgetState extends State<AIChatWidget> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       decoration: BoxDecoration(
                         color: const Color(0xFF0F172A), // Darker input bg
-                        borderRadius: BorderRadius.circular(24),
-                        border: Border.all(color: Colors.white.withOpacity(0.1)),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(
+                          color: Colors.white.withOpacity(0.1),
+                        ),
                       ),
                       child: Row(
                         children: [
@@ -261,22 +282,34 @@ class _AIChatWidgetState extends State<AIChatWidget> {
                                 hintStyle: TextStyle(color: Colors.white38),
                                 border: InputBorder.none,
                                 isDense: true,
-                                contentPadding: EdgeInsets.symmetric(vertical: 14),
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 14,
+                                ),
                               ),
                               onSubmitted: (_) => _sendMessage(),
                             ),
                           ),
-                          const SizedBox(width: 8),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF6366F1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: IconButton(
-                              icon: const Icon(Icons.send_rounded, color: Colors.white, size: 18),
-                              constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-                              padding: EdgeInsets.zero,
-                              onPressed: _sendMessage,
+                          const SizedBox(width: 18),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF6366F1),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: IconButton(
+                                icon: const Icon(
+                                  Icons.send_rounded,
+                                  color: Colors.white,
+                                  size: 18,
+                                ),
+                                constraints: const BoxConstraints(
+                                  minWidth: 32,
+                                  minHeight: 32,
+                                ),
+                                padding: EdgeInsets.zero,
+                                onPressed: _sendMessage,
+                              ),
                             ),
                           ),
                         ],
@@ -286,12 +319,14 @@ class _AIChatWidgetState extends State<AIChatWidget> {
                 ],
               ),
             ),
-          
+
           // --- Floating Toggle Button ---
           FloatingActionButton(
             backgroundColor: const Color(0xFF6366F1),
             elevation: 10,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
             onPressed: () {
               setState(() {
                 _isOpen = !_isOpen;
