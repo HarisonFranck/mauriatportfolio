@@ -30,7 +30,7 @@ flutter pub get
 
 echo "Building web (base-href=/$REPO_NAME/)..."
 flutter build web --release --base-href "/${REPO_NAME}/" \
-	--dart-define=AI_PROXY_URL="https://wkgymhcxmlmocoxvsdmu.supabase.co/functions/v1/gemini-proxy"
+	--dart-define=AI_PROXY_URL="https://ugulsebwiysitqxjdbix.supabase.co/functions/v1/gemini-proxy"
 
 echo "Publishing to ${PUBLISH_BRANCH} on ${REMOTE_REPO}..."
 pushd build/web >/dev/null
