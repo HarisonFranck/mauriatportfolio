@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:mauriatportfolio/l10n/app_localizations.dart';
 import 'package:mauriatportfolio/main.dart';
 import 'package:mauriatportfolio/Utilities/Utilitie.dart';
@@ -11,6 +9,9 @@ import 'package:mauriatportfolio/components/BeyondCodeSection.dart';
 import 'package:mauriatportfolio/components/AIChatWidget.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'dart:html' as html;
+import 'dart:ui';
+
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -25,6 +26,24 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   //int projectHoverIndex = 100;
   bool isHoverGitHubLink = false;
   late ScrollController scroll;
+  
+  // Section Keys for robust scrolling
+  final GlobalKey _homeKey = GlobalKey();
+  final GlobalKey _skillsKey = GlobalKey();
+  final GlobalKey _projectsKey = GlobalKey();
+  final GlobalKey _experienceKey = GlobalKey();
+  final GlobalKey _contactKey = GlobalKey();
+
+  void _scrollTo(GlobalKey key) {
+    final context = key.currentContext;
+    if (context != null) {
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeOut,
+      );
+    }
+  }
 
   @override
   void initState() {
@@ -166,11 +185,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               title: l10n.nav1,
                               onTap: () {
                                 Navigator.pop(context);
-                                scroll.animateTo(
-                                  0,
-                                  duration: const Duration(milliseconds: 600),
-                                  curve: Curves.easeOut,
-                                );
+                                _scrollTo(_homeKey);
                               },
                             ),
                             _buildDrawerItem(
@@ -178,11 +193,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               title: l10n.nav2,
                               onTap: () {
                                 Navigator.pop(context);
-                                scroll.animateTo(
-                                  height,
-                                  duration: const Duration(milliseconds: 600),
-                                  curve: Curves.easeOut,
-                                );
+                                _scrollTo(_skillsKey);
                               },
                             ),
                             _buildDrawerItem(
@@ -190,11 +201,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               title: l10n.nav3,
                               onTap: () {
                                 Navigator.pop(context);
-                                scroll.animateTo(
-                                  height * 1.9,
-                                  duration: const Duration(milliseconds: 600),
-                                  curve: Curves.easeOut,
-                                );
+                                _scrollTo(_projectsKey);
                               },
                             ),
                             _buildDrawerItem(
@@ -202,11 +209,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               title: l10n.nav4,
                               onTap: () {
                                 Navigator.pop(context);
-                                scroll.animateTo(
-                                  height * 3.48,
-                                  duration: const Duration(milliseconds: 600),
-                                  curve: Curves.easeOut,
-                                );
+                                _scrollTo(_experienceKey);
                               },
                             ),
                             _buildDrawerItem(
@@ -214,11 +217,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               title: l10n.nav5,
                               onTap: () {
                                 Navigator.pop(context);
-                                scroll.animateTo(
-                                  height * 5,
-                                  duration: const Duration(milliseconds: 600),
-                                  curve: Curves.easeOut,
-                                );
+                                _scrollTo(_contactKey);
                               },
                             ),
                             const SizedBox(height: 20),
@@ -453,15 +452,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                           onEnterHover: (event) =>
                                               hoverEnterNav(event, 0),
                                           onExitHover: hoverExitNav,
-                                          onTapNav: () {
-                                            scroll.animateTo(
-                                              0,
-                                              duration: Duration(
-                                                milliseconds: 600,
-                                              ),
-                                              curve: Curves.easeOut,
-                                            );
-                                          },
+                                          onTapNav: () => _scrollTo(_homeKey),
                                         ),
                                         HeaderNav(
                                           indexNav: indexNav,
@@ -471,15 +462,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                           onEnterHover: (event) =>
                                               hoverEnterNav(event, 1),
                                           onExitHover: hoverExitNav,
-                                          onTapNav: () {
-                                            scroll.animateTo(
-                                              height - 60,
-                                              duration: Duration(
-                                                milliseconds: 600,
-                                              ),
-                                              curve: Curves.easeOut,
-                                            );
-                                          },
+                                          onTapNav: () => _scrollTo(_skillsKey),
                                         ),
                                         HeaderNav(
                                           indexNav: indexNav,
@@ -489,15 +472,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                           onEnterHover: (event) =>
                                               hoverEnterNav(event, 2),
                                           onExitHover: hoverExitNav,
-                                          onTapNav: () {
-                                            scroll.animateTo(
-                                              height * 2.26,
-                                              duration: Duration(
-                                                milliseconds: 600,
-                                              ),
-                                              curve: Curves.easeOut,
-                                            );
-                                          },
+                                          onTapNav: () => _scrollTo(_projectsKey),
                                         ),
                                         HeaderNav(
                                           indexNav: indexNav,
@@ -507,15 +482,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                           onEnterHover: (event) =>
                                               hoverEnterNav(event, 3),
                                           onExitHover: hoverExitNav,
-                                          onTapNav: () {
-                                            scroll.animateTo(
-                                              height * 3.82,
-                                              duration: Duration(
-                                                milliseconds: 600,
-                                              ),
-                                              curve: Curves.easeOut,
-                                            );
-                                          },
+                                          onTapNav: () => _scrollTo(_experienceKey),
                                         ),
                                         HeaderNav(
                                           indexNav: indexNav,
@@ -525,15 +492,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                           onEnterHover: (event) =>
                                               hoverEnterNav(event, 4),
                                           onExitHover: hoverExitNav,
-                                          onTapNav: () {
-                                            scroll.animateTo(
-                                              height * 5.2,
-                                              duration: Duration(
-                                                milliseconds: 600,
-                                              ),
-                                              curve: Curves.easeOut,
-                                            );
-                                          },
+                                          onTapNav: () => _scrollTo(_contactKey),
                                         ),
                                       ],
                                     ),
@@ -698,12 +657,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
                     Expanded(
                       child: Container(
-                        child: ListView(
+                        child: SingleChildScrollView(
                           controller: scroll,
-                          children: [
+                          child: Column(
+                            children: [
                             Container(
+                              key: _homeKey,
                               width: width,
-                              height: height - 100,
                               child: isMobile
                                   ? Column(
                                       mainAxisAlignment:
@@ -763,7 +723,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                     ),
                                                     SizedBox(width: 8),
                                                     Text(
-                                                      "Disponible",
+                                                      l10n.statut,
                                                       style: TextStyle(
                                                         color:
                                                             const Color.fromARGB(
@@ -811,7 +771,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                           Alignment.centerRight,
                                                     ).createShader(bounds),
                                                 child: Text(
-                                                  "Hi, I'm Mauriat",
+                                                  l10n.welcoming,
                                                   style: TextStyle(
                                                     fontSize: isPhone ? 36 : 48,
                                                     color: Colors.white,
@@ -821,7 +781,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               ),
                                               SizedBox(height: 8),
                                               Text(
-                                                "Créateur d'expériences numériques impactantes.",
+                                                l10n.myDesc,
                                                 style: TextStyle(
                                                   fontSize: isPhone ? 14 : 18,
                                                   color: Colors.white38,
@@ -829,7 +789,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               ),
                                               SizedBox(height: 8),
                                               Text(
-                                                "Je suis un développeur passionné par la création d'applications web et mobiles élégantes, efficaces et évolutives. Expert de l'écosystème JavaScript moderne avec un œil pour l'UI/UX, je transforme des problèmes complexes en solutions intuitives.",
+                                                l10n.aboutMe,
                                                 style: TextStyle(
                                                   color: Colors.white30,
                                                   fontSize: isPhone ? 12 : 14,
@@ -840,35 +800,17 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                 spacing: 12,
                                                 children: [
                                                   ElevatedButton(
-                                                    style: ButtonStyle(
-                                                      fixedSize:
-                                                          MaterialStateProperty.all(
-                                                            Size(
-                                                              isPhone
-                                                                  ? 140
-                                                                  : 160,
-                                                              40,
-                                                            ),
-                                                          ),
-                                                      backgroundColor:
-                                                          MaterialStateProperty.all(
-                                                            Color.fromARGB(
-                                                              255,
-                                                              72,
-                                                              94,
-                                                              215,
-                                                            ),
-                                                          ),
-                                                    ),
-                                                    onPressed: () {
-                                                      scroll.animateTo(
-                                                        height * 2.3,
-                                                        duration: Duration(
-                                                          milliseconds: 600,
+                                                      style: ButtonStyle(
+                                                        fixedSize:
+                                                            WidgetStatePropertyAll(
+                                                          Size(isPhone ? 140 : 160, 40),
                                                         ),
-                                                        curve: Curves.easeOut,
-                                                      );
-                                                    },
+                                                        backgroundColor:
+                                                            const WidgetStatePropertyAll(
+                                                          Color.fromARGB(255, 72, 94, 215),
+                                                        ),
+                                                      ),
+                                                    onPressed: () => _scrollTo(_projectsKey),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.min,
@@ -891,25 +833,32 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                   ElevatedButton(
                                                     style: ButtonStyle(
                                                       fixedSize:
-                                                          MaterialStateProperty.all(
-                                                            Size(
-                                                              isPhone
-                                                                  ? 140
-                                                                  : 160,
-                                                              40,
-                                                            ),
-                                                          ),
+                                                          WidgetStatePropertyAll(
+                                                        Size(isPhone ? 140 : 160, 40),
+                                                      ),
                                                       backgroundColor:
-                                                          MaterialStateProperty.all(
-                                                            const Color.fromARGB(
-                                                              133,
-                                                              106,
-                                                              121,
-                                                              163,
-                                                            ),
-                                                          ),
+                                                          const WidgetStatePropertyAll(
+                                                        Color.fromARGB(
+                                                          133,
+                                                          106,
+                                                          121,
+                                                          163,
+                                                        ),
+                                                      ),
                                                     ),
-                                                    onPressed: () {},
+                                                    onPressed: () {
+                                                      if(l10n.localeName == 'fr'){
+                                                             html.window.open(
+                    'https://drive.google.com/file/d/1NKT0Ow9CcA_wAxYp121uNvGmgCa9rbUs/view?usp=sharing',
+                    '_blank');
+                html.window.console;
+                                                      }else{
+                                                        html.window.open(
+                    'https://drive.google.com/file/d/15JlvEWDhPNG66AguHUJrpYnvdGpGDB0B/view?usp=drive_link',
+                    '_blank');
+                html.window.console;
+                                                      }
+                                                    },
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.min,
@@ -1146,15 +1095,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                             ),
                                                           ),
                                                     ),
-                                                    onPressed: () {
-                                                      scroll.animateTo(
-                                                        height * 2.3,
-                                                        duration: Duration(
-                                                          milliseconds: 600,
-                                                        ),
-                                                        curve: Curves.easeOut,
-                                                      );
-                                                    },
+                                                    onPressed: () => _scrollTo(_projectsKey),
                                                     child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -1191,7 +1132,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                             ),
                                                           ),
                                                     ),
-                                                    onPressed: () {},
+                                                    onPressed: () {
+                                                         if(l10n.localeName == 'fr'){
+                                                             html.window.open(
+                    'https://drive.google.com/file/d/1NKT0Ow9CcA_wAxYp121uNvGmgCa9rbUs/view?usp=sharing',
+                    '_blank');
+                html.window.console;
+                                                      }else{
+                                                        html.window.open(
+                    'https://drive.google.com/file/d/15JlvEWDhPNG66AguHUJrpYnvdGpGDB0B/view?usp=drive_link',
+                    '_blank');
+                html.window.console;
+                                                    }
+                                                    },
                                                     child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -1276,8 +1229,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     ),
                             ),
                             Container(
+                              key: _skillsKey,
                               width: width,
-                              height: height + 300,
                               child: Column(
                                 children: [
                                   SizedBox(height: 50),
@@ -1328,9 +1281,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               ),
                             ),
                             Container(
+                              key: _projectsKey,
                               color: const Color.fromARGB(57, 96, 102, 139),
                               width: width,
-                              height: height + 500,
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
                                   horizontal: isMobile ? 16.0 : 120.0,
@@ -1516,8 +1469,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               ),
                             ),
                             Container(
+                              key: _experienceKey,
                               width: width,
-                              height: height + 600,
 
                               child: Center(
                                 child: Column(
@@ -1558,8 +1511,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               ),
                             ),
                             Container(
+                              key: _contactKey,
                               width: width,
-                              height: height - 300,
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   begin: AlignmentGeometry.topCenter,
@@ -1767,7 +1720,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 ],
                               ),
                             ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

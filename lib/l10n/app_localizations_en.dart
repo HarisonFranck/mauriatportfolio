@@ -22,10 +22,41 @@ class AppLocalizationsEn extends AppLocalizations {
       'Hello! I am Mauriat\'s AI assistant.\nAsk me about his skills, projects, or experience!';
 
   @override
-  String get aiErrorMessage => 'Sorry, something went wrong.';
+  String get aiErrorMessage =>
+      'Loading error, please come back later, but you can browse through the sections of Mauriat\'s portfolio.';
 
   @override
   String get aiInputHint => 'Ask a question...';
+
+  @override
+  String get aiSuggestionProjects => 'What are your main projects?';
+
+  @override
+  String get aiSuggestionSkills => 'What are your technical skills?';
+
+  @override
+  String get aiSuggestionEducation => 'Where are you currently studying?';
+
+  @override
+  String get aiSuggestionAI => 'Tell me about your AI journey';
+
+  @override
+  String get aiSuggestionBigData => 'What techs for Big Data?';
+
+  @override
+  String get aiSuggestionContact => 'How to contact you?';
+
+  @override
+  String get aiSuggestionPassions => 'What are your passions?';
+
+  @override
+  String get aiSuggestionWhyAI => 'Why AI and Big Data ?';
+
+  @override
+  String get aiSuggestionWhyMobile => 'Why mobile development ?';
+
+  @override
+  String get aiSuggestionChallenge => 'How do you handle a blocking bug ?';
 
   @override
   String get skillsTitle => 'Technical Skills';
@@ -93,7 +124,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sect2 => 'Backend & Database';
 
   @override
-  String get sect3 => 'Architecture & Strategy';
+  String get sect3 => 'Architecture & Tools';
 
   @override
   String get beyondCodeTitle => 'Beyond Code';
@@ -137,7 +168,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aboutMe =>
-      'I am a developer passionate about creating elegant, efficient, and scalable web and mobile applications. An expert in the modern JavaScript ecosystem with an eye for UI/UX, I transform complex problems into intuitive solutions.';
+      'I am a developer passionate about creating elegant, efficient, and scalable mobile and web applications. A Flutter expert with a strong command of Dart and the mobile ecosystem, I transform complex problems into intuitive digital solutions.';
 
   @override
   String get statut => 'Available';
@@ -149,7 +180,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get stack_flutterflow => 'Flutterflow';
 
   @override
-  String get stack_javascript => 'Javascript';
+  String get stack_javascriptandtypescript => 'Javascript / Typescript';
 
   @override
   String get stack_angular => 'Angular';
@@ -161,7 +192,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get stack_xano => 'Xano';
 
   @override
-  String get stack_cloud_functions => 'Cloud Functions';
+  String get stack_cloud_functions => 'Cloud Functions (serverless)';
 
   @override
   String get stack_sqlite => 'SQLite';

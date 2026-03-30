@@ -2,19 +2,17 @@ class PortfolioData {
   static String getIdentity(String lang) {
     if (lang == 'fr') {
       return """
-Nom : Harison Franck Mauriat
-Âge : 25 ans
-Rôle : Développeur Mobile & Web (Flutter & FlutterFlow)
-Lieu : Madagascar
-Résumé : Développeur passionné spécialisé dans la création d'applications mobiles et web fluides et performantes.
+**Nom :** Harison Franck Mauriat
+**Rôle :** Développeur Flutter Expert | Étudiant en M1 IA & Big Data (IT University)
+**Lieu :** Madagascar
+**Résumé :** Étudiant en Master 1 à l'IT University Andoharanofotsy (IA & Big Data) et développeur Flutter expert spécialisé dans la création d'applications mobiles performantes et fluides.
 """;
     } else {
       return """
-Name: Harison Franck Mauriat
-Age: 25
-Role: Mobile & Web Developer (Flutter & FlutterFlow)
-Location: Madagascar
-Summary: Passionate developer specializing in creating fluid and performant mobile and web applications.
+**Name:** Harison Franck Mauriat
+**Role:** Expert Flutter Developer | M1 AI & Big Data Student (IT University)
+**Location:** Madagascar
+**Summary:** Master 1 student at IT University Andoharanofotsy (AI & Big Data) and expert Flutter developer specializing in creating fluid and performant mobile applications.
 """;
     }
   }
@@ -24,17 +22,17 @@ Summary: Passionate developer specializing in creating fluid and performant mobi
     // but for "Phone" vs "Téléphone" it matters.
     if (lang == 'fr') {
       return """
-Email : hmauriatfranck@gmail.com
-Téléphone : +261 34 56 241 03
-GitHub : https://github.com/HarisonFranck/
-LinkedIn : https://www.linkedin.com/in/mauriat-franck-462640272/
+**Email :** hmauriatfranck@gmail.com
+**Téléphone :** +261 34 56 241 03
+**GitHub :** [HarisonFranck](https://github.com/HarisonFranck/)
+**LinkedIn :** [Mauriat Franck](https://www.linkedin.com/in/mauriat-franck-462640272/)
 """;
     } else {
       return """
-Email: hmauriatfranck@gmail.com
-Phone: +261 34 56 241 03
-GitHub: https://github.com/HarisonFranck/
-LinkedIn: https://www.linkedin.com/in/mauriat-franck-462640272/
+**Email:** hmauriatfranck@gmail.com
+**Phone:** +261 34 56 241 03
+**GitHub:** [HarisonFranck](https://github.com/HarisonFranck/)
+**LinkedIn:** [Mauriat Franck](https://www.linkedin.com/in/mauriat-franck-462640272/)
 """;
     }
   }
@@ -216,6 +214,10 @@ Problem Solving:
 - Fort focus sur l'architecture & la scalabilité
 - Expérience avec le code Flutter manuel & FlutterFlow
 - Amélioration continue & pensée de refonte système
+
+🚀 Vision Stratégique :
+- Pourquoi le Mobile ? Pour moi, le mobile est le point de contact le plus intime et immédiat avec l'utilisateur. Flutter permet de créer cette proximité avec une performance native.
+- Pourquoi l'IA & Big Data ? C'est la suite logique du développement. Créer des apps c'est bien, mais les rendre intelligentes et capables de traiter des données massives pour aider à la décision, c'est ce qui transforme un outil en une solution indispensable.
 """;
     } else {
       return """
@@ -225,6 +227,10 @@ Problem Solving:
 - Strong focus on architecture & scalability
 - Experience with both manual Flutter coding & FlutterFlow
 - Continuous improvement & system redesign thinking
+
+🚀 Strategic Vision:
+- Why Mobile? For me, mobile is the most intimate and immediate touchpoint with the user. Flutter allows creating that proximity with native performance.
+- Why AI & Big Data? It's the logical next step in development. Building apps is great, but making them intelligent and capable of processing massive data to aid decisions is what transforms a tool into an indispensable solution.
 """;
     }
   }
@@ -257,6 +263,7 @@ Problem Solving:
 Vous êtes l'assistant IA du portfolio de Mauriat Franck.
 Votre objectif est de répondre aux questions sur Mauriat, ses compétences, ses projets et son expérience, UNIQUEMENT basé sur le contexte suivant.
 Soyez professionnel, amical et concis.
+Utilisez le format Markdown pour vos réponses (gras, listes, liens, etc.) pour une meilleure lisibilité.
 Si vous ne connaissez pas la réponse basée sur le contexte, dites-le poliment et suggérez de le contacter directement.
 
 CONTEXTE :
@@ -272,8 +279,9 @@ ${getPersonalPassions('fr')}
     } else {
       return """
 You are the AI assistant for Mauriat Franck's portfolio.
-Your goal is to answer questions about Mauriat, his skills, projects,personal passions, and experience based ONLY on the following context.
+Your goal is to answer questions about Mauriat, his skills, projects, personal passions, and experience based ONLY on the following context.
 Be professional, friendly, and concise.
+Use Markdown formatting in your responses (bold, lists, links, etc.) for better readability.
 If you don't know the answer based on the context, say so politely and suggest contacting him directly.
 
 CONTEXT:

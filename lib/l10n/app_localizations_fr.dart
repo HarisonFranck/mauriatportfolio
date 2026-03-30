@@ -22,10 +22,41 @@ class AppLocalizationsFr extends AppLocalizations {
       'Bonjour ! Je suis l\'assistant IA de Mauriat.\nPosez-moi des questions sur ses compétences, ses projets ou son expérience !';
 
   @override
-  String get aiErrorMessage => 'Désolé, une erreur est survenue.';
+  String get aiErrorMessage =>
+      'Erreur de chargement, veuillez revenir plus tard, par contre vous pouvez naviguer sur les sections du portfolio de Mauriat.';
 
   @override
   String get aiInputHint => 'Posez une question...';
+
+  @override
+  String get aiSuggestionProjects => 'Quels sont tes projets principaux ?';
+
+  @override
+  String get aiSuggestionSkills => 'Quelles sont tes compétences techniques ?';
+
+  @override
+  String get aiSuggestionEducation => 'Où étudies-tu actuellement ?';
+
+  @override
+  String get aiSuggestionAI => 'Parle-moi de ton parcours en IA';
+
+  @override
+  String get aiSuggestionBigData => 'Quelles technos pour le Big Data ?';
+
+  @override
+  String get aiSuggestionContact => 'Comment te contacter ?';
+
+  @override
+  String get aiSuggestionPassions => 'Quelles sont tes passions ?';
+
+  @override
+  String get aiSuggestionWhyAI => 'Pourquoi l\'IA et le Big Data ?';
+
+  @override
+  String get aiSuggestionWhyMobile => 'Pourquoi le développement mobile ?';
+
+  @override
+  String get aiSuggestionChallenge => 'Que fais-tu face à un bug bloquant ?';
 
   @override
   String get skillsTitle => 'Compétences Techniques';
@@ -93,7 +124,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get sect2 => 'Backend & base de données';
 
   @override
-  String get sect3 => 'Architecture & stratégie';
+  String get sect3 => 'Architecture & Tools';
 
   @override
   String get beyondCodeTitle => 'Au-delà du Code';
@@ -137,7 +168,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aboutMe =>
-      'Je suis un développeur passionné par la création d\'applications web et mobiles élégantes, efficaces et évolutives. Expert de l\'écosystème JavaScript moderne avec un œil pour l\'UI/UX, je transforme des problèmes complexes en solutions intuitives.';
+      'Je suis un développeur passionné par la création d\'applications mobiles et web élégantes, efficaces et évolutives. Expert Flutter avec une maîtrise approfondie de Dart et de l\'écosystème mobile, je transforme des problèmes complexes en solutions numériques intuitives.';
 
   @override
   String get statut => 'Disponible';
@@ -149,7 +180,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get stack_flutterflow => 'Flutterflow';
 
   @override
-  String get stack_javascript => 'Javascript';
+  String get stack_javascriptandtypescript => 'Javascript / Typescript';
 
   @override
   String get stack_angular => 'Angular';
@@ -161,7 +192,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get stack_xano => 'Xano';
 
   @override
-  String get stack_cloud_functions => 'Cloud Functions';
+  String get stack_cloud_functions => 'Cloud Functions (serverless)';
 
   @override
   String get stack_sqlite => 'SQLite';

@@ -48,8 +48,8 @@ class StackTile extends StatelessWidget {
 List<StackTile> stackTiles = [
   StackTile(sectionId: 0, stackKey: "stack_flutter"),
   StackTile(sectionId: 0, stackKey: "stack_flutterflow"),
-  StackTile(sectionId: 0, stackKey: "stack_javascript"),
   StackTile(sectionId: 0, stackKey: "stack_angular"),
+  StackTile(sectionId: 0, stackKey: "stack_javascriptandtypescript"),
   StackTile(sectionId: 1, stackKey: "stack_supabase"),
   StackTile(sectionId: 1, stackKey: "stack_xano"),
   StackTile(sectionId: 1, stackKey: "stack_cloud_functions"),
@@ -72,10 +72,10 @@ String localizedStackName(BuildContext context, String key) {
       return l10n.stack_flutter;
     case 'stack_flutterflow':
       return l10n.stack_flutterflow;
-    case 'stack_javascript':
-      return l10n.stack_javascript;
     case 'stack_angular':
       return l10n.stack_angular;
+    case 'stack_javascriptandtypescript':
+      return l10n.stack_javascriptandtypescript;
     case 'stack_supabase':
       return l10n.stack_supabase;
     case 'stack_xano':

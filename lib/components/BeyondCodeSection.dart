@@ -11,7 +11,9 @@ class BeyondCodeSection extends StatelessWidget {
     final bool isMobile = screenSize.width < 800;
 
     return Padding(
-      padding: EdgeInsets.only(left: 190,right:190),
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 0 : 190,
+      ),
       child:Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -34,8 +36,8 @@ class BeyondCodeSection extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           // Section Description
-          SizedBox(
-            width: 800, // max width for text readability
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 800),
             child: Text(
               l10n.beyondCodeDesc,
               style: const TextStyle(

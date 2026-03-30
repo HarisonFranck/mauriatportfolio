@@ -125,7 +125,7 @@ abstract class AppLocalizations {
   /// No description provided for @aiErrorMessage.
   ///
   /// In fr, this message translates to:
-  /// **'Désolé, une erreur est survenue.'**
+  /// **'Erreur de chargement, veuillez revenir plus tard, par contre vous pouvez naviguer sur les sections du portfolio de Mauriat.'**
   String get aiErrorMessage;
 
   /// No description provided for @aiInputHint.
@@ -133,6 +133,66 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Posez une question...'**
   String get aiInputHint;
+
+  /// No description provided for @aiSuggestionProjects.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quels sont tes projets principaux ?'**
+  String get aiSuggestionProjects;
+
+  /// No description provided for @aiSuggestionSkills.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quelles sont tes compétences techniques ?'**
+  String get aiSuggestionSkills;
+
+  /// No description provided for @aiSuggestionEducation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Où étudies-tu actuellement ?'**
+  String get aiSuggestionEducation;
+
+  /// No description provided for @aiSuggestionAI.
+  ///
+  /// In fr, this message translates to:
+  /// **'Parle-moi de ton parcours en IA'**
+  String get aiSuggestionAI;
+
+  /// No description provided for @aiSuggestionBigData.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quelles technos pour le Big Data ?'**
+  String get aiSuggestionBigData;
+
+  /// No description provided for @aiSuggestionContact.
+  ///
+  /// In fr, this message translates to:
+  /// **'Comment te contacter ?'**
+  String get aiSuggestionContact;
+
+  /// No description provided for @aiSuggestionPassions.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quelles sont tes passions ?'**
+  String get aiSuggestionPassions;
+
+  /// No description provided for @aiSuggestionWhyAI.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pourquoi l\'IA et le Big Data ?'**
+  String get aiSuggestionWhyAI;
+
+  /// No description provided for @aiSuggestionWhyMobile.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pourquoi le développement mobile ?'**
+  String get aiSuggestionWhyMobile;
+
+  /// No description provided for @aiSuggestionChallenge.
+  ///
+  /// In fr, this message translates to:
+  /// **'Que fais-tu face à un bug bloquant ?'**
+  String get aiSuggestionChallenge;
 
   /// No description provided for @skillsTitle.
   ///
@@ -263,7 +323,7 @@ abstract class AppLocalizations {
   /// No description provided for @sect3.
   ///
   /// In fr, this message translates to:
-  /// **'Architecture & stratégie'**
+  /// **'Architecture & Tools'**
   String get sect3;
 
   /// No description provided for @beyondCodeTitle.
@@ -341,7 +401,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutMe.
   ///
   /// In fr, this message translates to:
-  /// **'Je suis un développeur passionné par la création d\'applications web et mobiles élégantes, efficaces et évolutives. Expert de l\'écosystème JavaScript moderne avec un œil pour l\'UI/UX, je transforme des problèmes complexes en solutions intuitives.'**
+  /// **'Je suis un développeur passionné par la création d\'applications mobiles et web élégantes, efficaces et évolutives. Expert Flutter avec une maîtrise approfondie de Dart et de l\'écosystème mobile, je transforme des problèmes complexes en solutions numériques intuitives.'**
   String get aboutMe;
 
   /// No description provided for @statut.
@@ -362,11 +422,11 @@ abstract class AppLocalizations {
   /// **'Flutterflow'**
   String get stack_flutterflow;
 
-  /// No description provided for @stack_javascript.
+  /// No description provided for @stack_javascriptandtypescript.
   ///
   /// In fr, this message translates to:
-  /// **'Javascript'**
-  String get stack_javascript;
+  /// **'Javascript / Typescript'**
+  String get stack_javascriptandtypescript;
 
   /// No description provided for @stack_angular.
   ///
@@ -389,7 +449,7 @@ abstract class AppLocalizations {
   /// No description provided for @stack_cloud_functions.
   ///
   /// In fr, this message translates to:
-  /// **'Cloud Functions'**
+  /// **'Cloud Functions (serverless)'**
   String get stack_cloud_functions;
 
   /// No description provided for @stack_sqlite.

@@ -48,7 +48,6 @@ class _ProjectCardState extends State<ProjectCard> {
       },
       child: Container(
         width: cardWidth,
-        height: 530,
         decoration: BoxDecoration(
           color: const Color.fromARGB(54, 96, 109, 139),
           border: Border.all(color: Colors.blueGrey),
@@ -128,19 +127,18 @@ class _ProjectCardState extends State<ProjectCard> {
                         fontSize: 20,
                       ),
                     ),
-                    Container(
-                      width: double.infinity,
-                      height: 70,
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(minHeight: 60),
                       child: Text(
-                        overflow: TextOverflow.fade,
                         widget.description,
                         style: TextStyle(color: Colors.white38),
                       ),
                     ),
                     SizedBox(height: 15),
-                    Row(
-                      spacing: 15,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                    Wrap(
+                      spacing: 10,
+                      runSpacing: 10,
+                      alignment: WrapAlignment.start,
                       children: [
                         for (int i = 0; i < widget.stackNames.length; i++) ...[
                           Container(
@@ -152,21 +150,17 @@ class _ProjectCardState extends State<ProjectCard> {
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(7.0),
-                              child: Center(
-                                child: Text(
-                                  widget.stackNames[i],
-                                  style: TextStyle(
-                                    color: const Color.fromARGB(
-                                      255,
-                                      113,
-                                      111,
-                                      200,
-                                    ),
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: 1.5,
-                                  ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 6,
+                              ),
+                              child: Text(
+                                widget.stackNames[i],
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 113, 111, 200),
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 1.2,
                                 ),
                               ),
                             ),

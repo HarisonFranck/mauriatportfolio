@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mauriatportfolio/l10n/app_localizations.dart';
 import 'package:mauriatportfolio/data/portfolio_data.dart';
 import 'package:mauriatportfolio/services/ai_service.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class AIChatWidget extends StatefulWidget {
   const AIChatWidget({super.key});
@@ -14,10 +15,31 @@ class AIChatWidget extends StatefulWidget {
 class _AIChatWidgetState extends State<AIChatWidget> {
   final AIService _aiService = AIService();
   final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
   List<Map<String, String>> _messages = [];
+  List<String> _currentSuggestions = [];
   bool _isOpen = false;
   bool _isLoading = false;
   String _currentLang = '';
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
 
   @override
   void didChangeDependencies() {
@@ -30,34 +52,75 @@ class _AIChatWidgetState extends State<AIChatWidget> {
       _messages = [
         {'role': 'ai', 'message': l10n.aiWelcomeMessage},
       ];
+      _updateSuggestions();
       _aiService.startChat(PortfolioData.getSystemPrompt(_currentLang));
     }
   }
 
-  void _sendMessage() async {
-    if (_controller.text.trim().isEmpty) return;
-
-    final userMessage = _controller.text;
+  void _updateSuggestions([String? lastSelected]) {
+    final l10n = AppLocalizations.of(context)!;
+    final all = [
+      l10n.aiSuggestionProjects,
+      l10n.aiSuggestionSkills,
+      l10n.aiSuggestionEducation,
+      l10n.aiSuggestionAI,
+      l10n.aiSuggestionBigData,
+      l10n.aiSuggestionContact,
+      l10n.aiSuggestionPassions,
+      l10n.aiSuggestionWhyAI,
+      l10n.aiSuggestionWhyMobile,
+      l10n.aiSuggestionChallenge,
+    ];
+    final history = _messages.map((m) => m['message']).toSet();
+    
+    final available = all.where((s) => !history.contains(s) && s != lastSelected).toList();
+    available.shuffle();
+    
     setState(() {
-      _messages.add({'role': 'user', 'message': userMessage});
-      _isLoading = true;
-      _controller.clear();
+      _currentSuggestions = available.take(3).toList();
     });
+  }
+
+  void _sendMessage({String? text}) async {
+    final messageText = text ?? _controller.text;
+    if (messageText.trim().isEmpty) return;
+
+    setState(() {
+      _messages.add({'role': 'user', 'message': messageText});
+      _isLoading = true;
+      if (text == null) _controller.clear();
+      _currentSuggestions = []; // Clear while thinking
+    });
+    _scrollToBottom();
 
     try {
-      final response = await _aiService.sendMessage(userMessage);
+      final response = await _aiService.sendMessage(messageText);
+      
+      // Professional Error Handling: Mask technical details or quota issues
+      if (response.toLowerCase().contains("proxy error") || 
+          response.toLowerCase().contains("quota exceeded") ||
+          response.toLowerCase().contains("exception")) {
+        throw Exception("Technical error masked");
+      }
+
       setState(() {
         _messages.add({'role': 'ai', 'message': response});
       });
+      _updateSuggestions();
+      _scrollToBottom();
     } catch (e) {
       final l10n = AppLocalizations.of(context)!;
       setState(() {
         _messages.add({'role': 'ai', 'message': l10n.aiErrorMessage});
       });
+      _scrollToBottom();
     } finally {
       setState(() {
         _isLoading = false;
       });
+      if (_currentSuggestions.isEmpty && !_isLoading) {
+        _updateSuggestions();
+      }
     }
   }
 
@@ -170,6 +233,7 @@ class _AIChatWidgetState extends State<AIChatWidget> {
                   // --- Chat Area ---
                   Expanded(
                     child: ListView.builder(
+                      controller: _scrollController,
                       padding: const EdgeInsets.all(16),
                       itemCount: _messages.length,
                       itemBuilder: (context, index) {
@@ -188,12 +252,8 @@ class _AIChatWidgetState extends State<AIChatWidget> {
                             constraints: const BoxConstraints(maxWidth: 260),
                             decoration: BoxDecoration(
                               color: isUser
-                                  ? const Color(
-                                      0xFF6366F1,
-                                    ) // User bubble: Indigo
-                                  : const Color(
-                                      0xFF1E293B,
-                                    ), // AI bubble: Dark slate
+                                  ? const Color(0xFF6366F1) // User bubble: Indigo
+                                  : const Color(0xFF1E293B), // AI bubble: Dark slate
                               borderRadius: BorderRadius.only(
                                 topLeft: const Radius.circular(16),
                                 topRight: const Radius.circular(16),
@@ -205,20 +265,91 @@ class _AIChatWidgetState extends State<AIChatWidget> {
                                     : const Radius.circular(16),
                               ),
                             ),
-                            child: Text(
-                              msg['message'] ?? '',
-                              style: TextStyle(
-                                color: isUser
-                                    ? Colors.white
-                                    : Colors.white.withOpacity(0.9),
-                                height: 1.4,
-                              ),
-                            ),
+                            child: isUser
+                                ? Text(
+                                    msg['message'] ?? '',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      height: 1.4,
+                                    ),
+                                  )
+                                : MarkdownBody(
+                                    data: msg['message'] ?? '',
+                                    styleSheet: MarkdownStyleSheet(
+                                      p: TextStyle(
+                                        color: Colors.white.withOpacity(0.9),
+                                        height: 1.4,
+                                        fontSize: 14,
+                                      ),
+                                      strong: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      listBullet: TextStyle(
+                                        color: Colors.white.withOpacity(0.9),
+                                      ),
+                                    ),
+                                  ),
                           ),
                         );
                       },
                     ),
                   ),
+
+                  // --- Suggestions Area ---
+                  if (_currentSuggestions.isNotEmpty && !_isLoading)
+                    Container(
+                      height: 54, // Slightly taller for better padding
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: _currentSuggestions.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 10.0),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(20),
+                                onTap: () => _sendMessage(text: _currentSuggestions[index]),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 14,
+                                    vertical: 8,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF6366F1).withOpacity(0.12),
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                      color: const Color(0xFF6366F1).withOpacity(0.35),
+                                      width: 1,
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.1),
+                                        blurRadius: 4,
+                                        offset: const Offset(0, 2),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      _currentSuggestions[index],
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 13, // Slightly larger
+                                        fontWeight: FontWeight.w500,
+                                        letterSpacing: 0.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
 
                   // --- Loading Indicator ---
                   if (_isLoading)
