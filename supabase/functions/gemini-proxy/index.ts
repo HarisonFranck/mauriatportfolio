@@ -1,6 +1,6 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts"
 const GEMINI_API_KEY = Deno.env.get("GEN_AI_API_KEY");
-const MODEL_NAME = "gemini-2.5-flash"; // Fixed for stability
+const MODEL_NAME = "gemini-3.6-flash"; // Updated to current active model
 
 Deno.serve(async (req) => {
     // Handle CORS

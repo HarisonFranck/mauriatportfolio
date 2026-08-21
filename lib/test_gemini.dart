@@ -5,10 +5,10 @@ void main() async {
   print('Testing Gemini API with key: $apiKey');
   
   final models = [
+    'gemini-3.6-flash',
     'gemini-2.5-flash',
     'gemini-2.0-flash',
     'gemini-1.0-pro',
-    'gemini-2.0-flash-exp', 
   ];
 
   for (var modelName in models) {

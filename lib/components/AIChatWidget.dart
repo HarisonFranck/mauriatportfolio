@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mauriatportfolio/l10n/app_localizations.dart';
 import 'package:mauriatportfolio/data/portfolio_data.dart';
 import 'package:mauriatportfolio/services/ai_service.dart';
@@ -93,6 +92,7 @@ class _AIChatWidgetState extends State<AIChatWidget> {
     });
     _scrollToBottom();
 
+    final l10n = AppLocalizations.of(context)!;
     try {
       final response = await _aiService.sendMessage(messageText);
       
@@ -109,7 +109,6 @@ class _AIChatWidgetState extends State<AIChatWidget> {
       _updateSuggestions();
       _scrollToBottom();
     } catch (e) {
-      final l10n = AppLocalizations.of(context)!;
       setState(() {
         _messages.add({'role': 'ai', 'message': l10n.aiErrorMessage});
       });

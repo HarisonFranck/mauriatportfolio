@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:google_generative_ai/google_generative_ai.dart';
-import 'package:mauriatportfolio/data/portfolio_data.dart';
 
 class AIService {
   // Proxy URL for secure calls (no API key exposed)
@@ -19,7 +18,7 @@ class AIService {
     if (_proxyUrl.isEmpty) {
       if (_apiKey.isNotEmpty) {
         _model = GenerativeModel(
-          model: 'gemini-2.5-flash',
+          model: 'gemini-3.6-flash',
           apiKey: _apiKey,
           systemInstruction: Content.system(systemPrompt),
         );
